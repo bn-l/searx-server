@@ -1,0 +1,15 @@
+use_default_settings: true
+server:
+  secret_key: "change-me"
+  image_proxy: true
+search:
+  formats:
+    - html
+    - json
+engines:
+  - name: marginalia
+    engine: marginalia
+    shortcut: mar
+    api_key: "your-marginalia-api-key-here"
+    disabled: false
+    inactive: false
