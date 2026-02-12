@@ -11,3 +11,8 @@ REPOMAP.md
 CODEGUIDE.md
 **/.cursor
 .mcp.json
+
+# SearXNG secrets
+config/searxng/settings.yml
+PLAN*
+PROPOSAL*
