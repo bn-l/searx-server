@@ -16,3 +16,6 @@ CODEGUIDE.md
 config/searxng/settings.yml
 PLAN*
 PROPOSAL*
+
+# Generated blocklist
+config/searxng/hostnames-remove.yml
