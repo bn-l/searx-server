@@ -1,0 +1,6 @@
+# Personal blocklist
+# Add your own domains to block here
+
+(.*\.)?quora\.com
+(.*\.)?pinterest\.com
+(.*\.)?pinterest\.[a-z]+
