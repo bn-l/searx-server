@@ -1,0 +1,55 @@
+============================================
+  SearXNG 20-Instance Round-Robin Results
+============================================
+
+Configuration:
+  Instances:  20
+  Queries:    30
+  Rounds:     3
+  Delay:      2s
+  Total searches: 90
+
+--- Aggregate ---
+  Total searches:         90
+  Successful (HTTP 200):  90
+  Google blocked:         0
+  Timeouts:               0
+  Connection failures:    0
+
+--- Per-Instance Breakdown ---
+  Instance            Total     Success   Google-Blocked  First-Block
+  sxng-exp-01  5        5        0              -
+  sxng-exp-02  5        5        0              -
+  sxng-exp-03  5        5        0              -
+  sxng-exp-04  5        5        0              -
+  sxng-exp-05  5        5        0              -
+  sxng-exp-06  5        5        0              -
+  sxng-exp-07  5        5        0              -
+  sxng-exp-08  5        5        0              -
+  sxng-exp-09  5        5        0              -
+  sxng-exp-10  5        5        0              -
+  sxng-exp-11  4        4        0              -
+  sxng-exp-12  4        4        0              -
+  sxng-exp-13  4        4        0              -
+  sxng-exp-14  4        4        0              -
+  sxng-exp-15  4        4        0              -
+  sxng-exp-16  4        4        0              -
+  sxng-exp-17  4        4        0              -
+  sxng-exp-18  4        4        0              -
+  sxng-exp-19  4        4        0              -
+  sxng-exp-20  4        4        0              -
+
+--- Engine Health ---
+  Engines that appeared in results:
+    google: 88
+    marginalia: 88
+    duckduckgo: 85
+
+  Engines marked unresponsive (across all searches):
+    [\brave\,\Suspended: too many requests\]: 70 times
+    [\brave\,\too many requests\]: 20 times
+    [\duckduckgo\,\CAPTCHA\]: 5 times
+    [\google\,\timeout\]: 2 times
+    [\marginalia\,\too many requests\]: 2 times
+
+--- Timeline (first 10 Google blocks) ---
