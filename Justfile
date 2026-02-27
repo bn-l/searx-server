@@ -64,9 +64,9 @@ upgrade:
 fix-perms:
     ssh {{host}} 'docker run --rm -v {{remote_dir}}:/data alpine chown -R $(id -u):$(id -g) /data'
 
-# Run end-to-end test of the SearXNG fleet
+# Run end-to-end test of the SearXNG fleet (runs locally, not on server)
 e2e:
-    ssh {{host}} 'bash -s' < e2e-test.sh
+    bash e2e-test.sh
 
 # SSH into server in the searxng directory
 ssh:
