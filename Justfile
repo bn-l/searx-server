@@ -11,7 +11,7 @@ deploy-proxy:
 # Deploy SearXNG config and restart instances
 # If searx-google patches exist on server, merges them via -f
 deploy-searxng: generate-blocklist
-    rsync -avz --delete --exclude='settings/' config/ {{host}}:{{remote_dir}}/
+    rsync -avz --delete --exclude='settings/' --exclude='searx-google/' config/ {{host}}:{{remote_dir}}/
     ssh {{host}} 'cd {{remote_dir}} && sh generate-settings.sh'
     ssh {{host}} 'cd {{remote_dir}} && docker compose down --remove-orphans'
     ssh {{host}} 'cd {{remote_dir}} && \
