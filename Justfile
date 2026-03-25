@@ -1,6 +1,26 @@
 remote_dir := "/home/bml/searxng"
 host := "sxm"
 
+# Deploy everything: proxy fleet first (creates sxng-fleet network), then SearXNG
+deploy: deploy-proxy deploy-searxng
+
+# Deploy proxy fleet to server (delegates to searx-google project)
+deploy-proxy:
+    just -f ../searx-google/Justfile deploy
+
+# Deploy SearXNG config and restart instances
+# If searx-google patches exist on server, merges them via -f
+deploy-searxng: generate-blocklist
+    rsync -avz --delete --exclude='settings/' config/ {{host}}:{{remote_dir}}/
+    ssh {{host}} 'cd {{remote_dir}} && sh generate-settings.sh'
+    ssh {{host}} 'cd {{remote_dir}} && docker compose down --remove-orphans'
+    ssh {{host}} 'cd {{remote_dir}} && \
+      if [ -f searx-google/compose.searxng-patches.yml ]; then \
+        docker compose -f docker-compose.yml -f searx-google/compose.searxng-patches.yml up -d; \
+      else \
+        docker compose up -d; \
+      fi'
+
 # Generate the hostnames-remove.yml blocklist from .list files
 generate-blocklist:
     cat blocklists/*.list \
@@ -8,13 +28,6 @@ generate-blocklist:
       | sort -u \
       | sed "s/.*/- '&'/" \
       > config/searxng/hostnames-remove.yml
-
-# Deploy config to server and restart containers
-deploy: generate-blocklist
-    rsync -avz --delete --exclude='settings/' config/ {{host}}:{{remote_dir}}/
-    ssh {{host}} 'cd {{remote_dir}} && sh generate-settings.sh'
-    ssh {{host}} 'cd {{remote_dir}} && docker compose down --remove-orphans'
-    ssh {{host}} 'cd {{remote_dir}} && docker compose up -d'
 
 # Pull server config back to local (excludes generated settings)
 pull:
@@ -28,7 +41,15 @@ logs *args:
 logs-follow *args:
     ssh {{host}} 'cd {{remote_dir}} && docker compose logs -f {{args}}'
 
-# Show container status
+# Show proxy fleet logs
+proxy-logs *args:
+    ssh {{host}} 'cd {{remote_dir}}/searx-google && docker compose logs {{args}}'
+
+# Follow proxy fleet logs
+proxy-logs-follow *args:
+    ssh {{host}} 'cd {{remote_dir}}/searx-google && docker compose logs -f {{args}}'
+
+# Show all container status (SearXNG + proxy fleet)
 status:
     ssh {{host}} 'docker ps --filter name=sxng --format "table {{{{.Names}}\t{{{{.Status}}\t{{{{.Ports}}"'
 

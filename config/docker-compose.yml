@@ -3,67 +3,81 @@ x-searxng: &searxng
   restart: unless-stopped
   environment:
     - GRANIAN_LOG_ACCESS_ENABLED=true
+    - PYTHONDONTWRITEBYTECODE=1
+  networks:
+    - default
+    - sxng-fleet
 
 services:
   sxng-01:
     <<: *searxng
     container_name: sxng-01
     ports: ["127.0.0.1:8081:8080"]
-    volumes: ["./settings/sxng-01:/etc/searxng:ro"]
+    volumes:
+      - ./settings/sxng-01:/etc/searxng:ro
 
   sxng-02:
     <<: *searxng
     container_name: sxng-02
     ports: ["127.0.0.1:8082:8080"]
-    volumes: ["./settings/sxng-02:/etc/searxng:ro"]
+    volumes:
+      - ./settings/sxng-02:/etc/searxng:ro
 
   sxng-03:
     <<: *searxng
     container_name: sxng-03
     ports: ["127.0.0.1:8083:8080"]
-    volumes: ["./settings/sxng-03:/etc/searxng:ro"]
+    volumes:
+      - ./settings/sxng-03:/etc/searxng:ro
 
   sxng-04:
     <<: *searxng
     container_name: sxng-04
     ports: ["127.0.0.1:8084:8080"]
-    volumes: ["./settings/sxng-04:/etc/searxng:ro"]
+    volumes:
+      - ./settings/sxng-04:/etc/searxng:ro
 
   sxng-05:
     <<: *searxng
     container_name: sxng-05
     ports: ["127.0.0.1:8085:8080"]
-    volumes: ["./settings/sxng-05:/etc/searxng:ro"]
+    volumes:
+      - ./settings/sxng-05:/etc/searxng:ro
 
   sxng-06:
     <<: *searxng
     container_name: sxng-06
     ports: ["127.0.0.1:8086:8080"]
-    volumes: ["./settings/sxng-06:/etc/searxng:ro"]
+    volumes:
+      - ./settings/sxng-06:/etc/searxng:ro
 
   sxng-07:
     <<: *searxng
     container_name: sxng-07
     ports: ["127.0.0.1:8087:8080"]
-    volumes: ["./settings/sxng-07:/etc/searxng:ro"]
+    volumes:
+      - ./settings/sxng-07:/etc/searxng:ro
 
   sxng-08:
     <<: *searxng
     container_name: sxng-08
     ports: ["127.0.0.1:8088:8080"]
-    volumes: ["./settings/sxng-08:/etc/searxng:ro"]
+    volumes:
+      - ./settings/sxng-08:/etc/searxng:ro
 
   sxng-09:
     <<: *searxng
     container_name: sxng-09
     ports: ["127.0.0.1:8089:8080"]
-    volumes: ["./settings/sxng-09:/etc/searxng:ro"]
+    volumes:
+      - ./settings/sxng-09:/etc/searxng:ro
 
   sxng-10:
     <<: *searxng
     container_name: sxng-10
     ports: ["127.0.0.1:8090:8080"]
-    volumes: ["./settings/sxng-10:/etc/searxng:ro"]
+    volumes:
+      - ./settings/sxng-10:/etc/searxng:ro
 
   sxng-controller:
     container_name: sxng-controller
@@ -73,3 +87,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./restart-controller.sh:/controller.sh:ro
     command: sh /controller.sh
+
+networks:
+  sxng-fleet:
+    external: true
+    name: sxng-fleet
