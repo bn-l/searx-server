@@ -15,6 +15,7 @@ services:
     ports: ["127.0.0.1:8081:8080"]
     volumes:
       - ./settings/sxng-01:/etc/searxng:ro
+      - ./searxng/plugins/engine_monitor.py:/usr/local/searxng/searx/plugins/engine_monitor.py:ro
 
   sxng-02:
     <<: *searxng
@@ -22,6 +23,7 @@ services:
     ports: ["127.0.0.1:8082:8080"]
     volumes:
       - ./settings/sxng-02:/etc/searxng:ro
+      - ./searxng/plugins/engine_monitor.py:/usr/local/searxng/searx/plugins/engine_monitor.py:ro
 
   sxng-03:
     <<: *searxng
@@ -29,6 +31,7 @@ services:
     ports: ["127.0.0.1:8083:8080"]
     volumes:
       - ./settings/sxng-03:/etc/searxng:ro
+      - ./searxng/plugins/engine_monitor.py:/usr/local/searxng/searx/plugins/engine_monitor.py:ro
 
   sxng-04:
     <<: *searxng
@@ -36,6 +39,7 @@ services:
     ports: ["127.0.0.1:8084:8080"]
     volumes:
       - ./settings/sxng-04:/etc/searxng:ro
+      - ./searxng/plugins/engine_monitor.py:/usr/local/searxng/searx/plugins/engine_monitor.py:ro
 
   sxng-05:
     <<: *searxng
@@ -43,6 +47,7 @@ services:
     ports: ["127.0.0.1:8085:8080"]
     volumes:
       - ./settings/sxng-05:/etc/searxng:ro
+      - ./searxng/plugins/engine_monitor.py:/usr/local/searxng/searx/plugins/engine_monitor.py:ro
 
   sxng-06:
     <<: *searxng
@@ -50,6 +55,7 @@ services:
     ports: ["127.0.0.1:8086:8080"]
     volumes:
       - ./settings/sxng-06:/etc/searxng:ro
+      - ./searxng/plugins/engine_monitor.py:/usr/local/searxng/searx/plugins/engine_monitor.py:ro
 
   sxng-07:
     <<: *searxng
@@ -57,6 +63,7 @@ services:
     ports: ["127.0.0.1:8087:8080"]
     volumes:
       - ./settings/sxng-07:/etc/searxng:ro
+      - ./searxng/plugins/engine_monitor.py:/usr/local/searxng/searx/plugins/engine_monitor.py:ro
 
   sxng-08:
     <<: *searxng
@@ -64,6 +71,7 @@ services:
     ports: ["127.0.0.1:8088:8080"]
     volumes:
       - ./settings/sxng-08:/etc/searxng:ro
+      - ./searxng/plugins/engine_monitor.py:/usr/local/searxng/searx/plugins/engine_monitor.py:ro
 
   sxng-09:
     <<: *searxng
@@ -71,6 +79,7 @@ services:
     ports: ["127.0.0.1:8089:8080"]
     volumes:
       - ./settings/sxng-09:/etc/searxng:ro
+      - ./searxng/plugins/engine_monitor.py:/usr/local/searxng/searx/plugins/engine_monitor.py:ro
 
   sxng-10:
     <<: *searxng
@@ -78,6 +87,7 @@ services:
     ports: ["127.0.0.1:8090:8080"]
     volumes:
       - ./settings/sxng-10:/etc/searxng:ro
+      - ./searxng/plugins/engine_monitor.py:/usr/local/searxng/searx/plugins/engine_monitor.py:ro
 
   sxng-controller:
     container_name: sxng-controller
